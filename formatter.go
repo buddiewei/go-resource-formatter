@@ -47,6 +47,9 @@ var unitMapping = map[Unit]float64{
 // 1G 会被转换为 1000 * 1000 * 1000 字节。
 // 1GB 会被转换为 1000 * 1000 * 1000 字节。
 func TransferResource(s string) (float64, error) {
+	if s == "" {
+		return 0, nil
+	}
 	// 正则表达式匹配数字和单位
 	re := regexp.MustCompile(`(\d+(?:\.\d+)?)([EPTGMK]?i?)`)
 	match := re.FindStringSubmatch(s)
